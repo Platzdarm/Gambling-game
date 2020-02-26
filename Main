@@ -1,0 +1,244 @@
+import random
+import tabulate
+
+funds = int(input("How much money do you want to extract form the ATM: "))
+thing = [['Roulette', 1], ['50/50', 2], ['Black Jack', 3], ['quit', 4]]
+x = tabulate.tabulate(thing)
+
+def Roulette(x):
+    print('Playing Roulette')
+    print("Funds: " + str(x))
+
+    Bet = int(input("How much do you want to bet: "))
+    x = x - Bet
+    BetPos = int(input("How much do you want to bet on (positions)(number for the number and 50 for odd(red) and 60 for even(black)): "))
+    num = random.randint(1,37)
+    gain = 0
+    print(' ')
+    print(num)
+    print(' ')
+    if BetPos > 0 and BetPos < 38:
+        if BetPos == num:
+            print('You got the number!!')
+            gain = Bet * 15
+        else:
+            print('You tried. Go again!')
+            gain = 0
+
+    elif BetPos == 50:
+        if (num % 2) == 1:
+            print('You got ODD that is a 1.5 multiplier')
+            gain = Bet * 1.5
+        else:
+            print('You tried. Go again!')
+            gain = 0
+
+    elif BetPos == 60:
+        if (num % 2) == 0:
+            print('You got EVEN that is a 1.5 multiplier')
+            gain = Bet * 1.5
+        else:
+            print('You tried. Go again!')
+            gain = 0
+
+
+    # Quiting function
+    last = x + gain
+    print(last)
+    Quit = input("Do you wnat to stop? [Y/N]")
+    if Quit == 'Y':
+        print(last)
+        print('thanks for playing')
+        exit()
+
+    return last
+
+def Half(x):
+    print('Playing Half')
+    thing = random.randint(1,2)
+    bid = int(input("Bid: "))
+    if thing == 1:
+        return x + bid
+    else:
+        return x - bid
+
+def Jack(x):
+    print("Funds: " + str(x))
+    Bet = int(input("How much do you want to bet: "))
+    x = x - Bet
+    thing = 0
+    thing2 = 0
+
+
+    print('your cards: ')
+    Yournums = []
+    while thing<2:
+        number = random.randint(1,13)
+        Suits = ['Diamonds', 'Clubs', 'Hearts', 'Spades']
+        Suit = random.choice(Suits)
+        if number < 11 and number > 1:
+            print(str(number) + " of " + Suit)
+        elif number == 11:
+            print('Jack' + " of " + Suit)
+        elif number == 12:
+            print('Queen' + " of " + Suit)
+        elif number == 13:
+            print('King' + " of " + Suit)
+        elif number == 1:
+            print('Ace' + " of " + Suit)
+        if number > 10:
+            number = 10
+        if number == 1:
+            y = random.randint(1,2)
+            if y == 1:
+                number = 1
+            elif y == 2:
+                number = 11
+        Yournums.append(number)
+        thing += 1
+
+    print(' ')
+    print('Computer cards: ')
+    CPnums = []
+    while thing2<2:
+        number = random.randint(1,13)
+        Suits = ['Diamonds', 'Clubs', 'Hearts', 'Spades']
+        Suit = random.choice(Suits)
+        if number < 11 and number > 1:
+            print(str(number) + " of " + Suit)
+        elif number == 11:
+            print('Jack' + " of " + Suit)
+        elif number == 12:
+            print('Queen' + " of " + Suit)
+        elif number == 13:
+            print('King' + " of " + Suit)
+        elif number == 1:
+            print('Ace' + " of " + Suit)
+        if number > 10:
+            number = 10
+        if number == 1:
+            y = random.randint(1,2)
+            if y == 1:
+                number = 1
+            elif y == 2:
+                number = 11
+        CPnums.append(number)
+        thing2 += 1
+
+    totalYour = Yournums[0] + Yournums[1]
+    totalPC = CPnums[0] + CPnums[1]
+    print(" ")
+    print('your total is: ' + str(totalYour))
+    print('PC total is: ' + str(totalPC))
+    print(" ")
+
+    another = input("Do you wnat another card? [Y/N]")
+
+    if another == 'Y':
+        number = random.randint(1, 13)
+        Suits = ['Diamonds', 'Clubs', 'Hearts', 'Spades']
+        Suit = random.choice(Suits)
+        if number < 11 and number > 1:
+            print(str(number) + " of " + Suit)
+        elif number == 11:
+            print('Jack' + " of " + Suit)
+        elif number == 12:
+            print('Queen' + " of " + Suit)
+        elif number == 13:
+            print('King' + " of " + Suit)
+        elif number == 1:
+            print('Ace' + " of " + Suit)
+        if number > 10:
+            number = 10
+        if number == 1:
+            y = random.randint(1, 2)
+            if y == 1:
+                number = 1
+            elif y == 2:
+                number = 11
+        Yournums.append(number)
+    elif another == 'N':
+        g = 0
+        Yournums.append(g)
+
+
+
+    print(' ')
+    if totalPC < 15:
+        print('PC gets one more card')
+        number = random.randint(1, 13)
+        Suits = ['Diamonds', 'Clubs', 'Hearts', 'Spades']
+        Suit = random.choice(Suits)
+        if number < 11 and number > 1:
+            print(str(number) + " of " + Suit)
+        elif number == 11:
+            print('Jack' + " of " + Suit)
+        elif number == 12:
+            print('Queen' + " of " + Suit)
+        elif number == 13:
+            print('King' + " of " + Suit)
+        elif number == 1:
+            print('Ace' + " of " + Suit)
+        if number > 10:
+            number = 10
+        if number == 1:
+            y = random.randint(1,2)
+            if y == 1:
+                number = 1
+            elif y == 2:
+                number = 11
+        CPnums.append(number)
+    else:
+        g = 0
+        CPnums.append(g)
+
+
+
+    totalYour = Yournums[0] + Yournums[1] + Yournums[2]
+    totalPC = CPnums[0] + CPnums[1] + CPnums[2]
+    print(" ")
+    print('your total is: ' + str(totalYour))
+    print('PC total is: ' + str(totalPC))
+    print(" ")
+    gain = 0
+    if totalYour > 21:
+        print('You fold')
+        gain = 0
+    if totalYour == 21:
+        print('Black Jack!')
+        gain = Bet * 2
+    if totalYour < 21 and totalYour > totalPC:
+        print('Even')
+        gain = Bet
+    if totalPC>21:
+        print('PC folds')
+
+
+    # Quiting function
+    last = x + gain
+    print(last)
+    Quit = input("Do you wnat to stop? [Y/N]")
+    if Quit == 'Y':
+        print(last)
+        print('thanks for playing')
+        return last
+
+    return last
+
+while funds > 1:
+    print(' ')
+    print("Money Available: " + str(funds))
+    print(x)
+    game = int(input("Game: "))
+    if game == 1:
+        funds = Roulette(funds)
+    elif game == 2:
+        funds = Half(funds)
+    elif game == 3:
+        funds = Jack(funds)
+    elif game == 4:
+        quit()
+    else:
+        print('Choose something Else')
+    print(funds)
+print('done')
